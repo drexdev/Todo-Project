@@ -42,8 +42,7 @@ export class TasksService {
 
     return reply.status(201).send({
       statusCode: 201,
-      message: "Tarefa criada com sucesso!",
-      task,
+      message: "Tarefa criada com sucesso!"
     });
   }
 
