@@ -1,0 +1,26 @@
+{
+  "name": "backend-todo",
+  "description": "Projeto de gerenciador de tarefas utilizando NodeJS e PostgreSQL.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": {
+    "name": "Lucas",
+    "email": "lucas@fywedev.com"
+  },
+  "scripts": {
+    "dev": "tsx app/server.ts",
+    "build": "tsc --build",
+    "start": "node dist/server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "fastify": "^4.28.1",
+    "tsx": "^4.16.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.14.11",
+    "typescript": "^5.5.3"
+  }
+}
