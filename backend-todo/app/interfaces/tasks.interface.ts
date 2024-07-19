@@ -11,6 +11,6 @@ export class Task {
     @IsNotEmpty({ message: 'A descrição deve ser informada.' })
     description: string = "";
 
-    @IsIn(['todo', 'doing', 'done'], { message: 'O status deve ser um dos seguintes: todo, doing ou done.' })
-    status: 'todo' | 'doing' | 'done' = "todo";
+    @IsIn(['todo', 'done'], { message: 'O status deve ser um dos seguintes: todo ou done.' })
+    status: 'todo' | 'done' = "todo";
 }
