@@ -1,9 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  * {
+    font-family: 'Inter', sans-serif;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-100; 
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    @apply bg-indigo-400 rounded-md;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-indigo-700; 
+  }
+}
+
+@layer base {
   body {
-    @apply bg-background;
+    @apply bg-slate-100 text-[#352d54] min-h-screen flex flex-col justify-center md:items-center px-7;
   }
 }
