@@ -1,62 +1,41 @@
-import { useTask } from "../../contexts/task-context";
-import Task from "./Task";
+import { useState } from "react";
+
+import { TaskCreate } from "./dialog/task-create";
+import { ListTask } from "./tasks/list-tasks";
 
 function App() {
-  const { tasks, createTask, deleteTask, updateTask } = useTask();
+  const [filter, setFilter] = useState("Todos");
 
-  const AllTasks = tasks
-    .sort((a, b) => Number(b.id) - Number(a.id)) // Ordenando as tarefas de acordo com a data.
-    .map((task) => (
-      <Task
-        key={task.id}
-        task={task}
-        handleDeleteTask={() => {
-          deleteTask(task.id as number);
-        }}
-        toggleDone={(isDone) => {
-          updateTask({ ...task, status: isDone ? "todo" : "done" });
-        }}
-      />
-    ));
+  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(event.target.value);
+  };
 
   return (
-    <div className="md:w-[600px] w-full relative text-center transition-all">
-      <h1 className="text-4xl font-black">TODO - ProUnion</h1>
-      <p>Armazene suas tarefas e organize-as de acordo.</p>
+    <div className="md:min-w-[600px] md:max-w-[800px] w-full relative text-center transition-all">
+      <h1 className="lg:text-4xl text-3xl font-black">TODO - Lista de Tarefas</h1>
+      <p className="text-slate-500 lg:text-base text-sm">Armazene suas tarefas e organize-as de acordo.</p>
 
       <div className="mt-10 w-full">
         <div className="flex justify-between items-center gap-2">
-          <div
-            className="py-3 px-4 text-base flex-1 bg-indigo-600 text-white font-medium rounded-md cursor-pointer transition-opacity hover:opacity-80"
-            onClick={() =>
-              createTask({
-                title: "Nova Tarefa",
-                description: "Descrição da Tarefa",
-                status: "todo",
-              })
-            }
+          <TaskCreate>
+            <button
+              className="py-3 px-4 md:text-base text-sm flex-1 bg-indigo-600 text-white font-medium rounded-md cursor-pointer transition-opacity hover:opacity-80"
+            >
+              <span>Criar Tarefa</span>
+            </button>
+          </TaskCreate>
+
+          <select
+            onChange={handleFilterChange}
+            className="py-3 px-4 md:text-base text-sm bg-indigo-300 border-0 font-medium rounded-md cursor-pointer flex items-center gap-2 transition-opacity hover:opacity-80"
           >
-            <span>Criar Tarefa</span>
-          </div>
-
-          <div className="py-3 px-4 text-base bg-indigo-950 text-white font-medium rounded-md cursor-pointer transition-opacity hover:opacity-80">
-            <span>Todos ({AllTasks.length})</span>
-          </div>
+            <option value="Todos">Todos</option>
+            <option value="Pendentes">Pendentes</option>
+            <option value="Concluídas">Concluídas</option>
+          </select>
         </div>
 
-        <div className="w-full relative p-2 mt-3 bg-indigo-100 rounded-md flex flex-col gap-2 max-h-[600px] overflow-auto border-2 border-indigo-100">
-          {AllTasks.length > 0 ? (
-            AllTasks
-          ) : (
-            <p>
-              Lista de tarefas vazio (
-              <b className="underline underline-offset-4 cursor-pointer">
-                Crie uma
-              </b>
-              )
-            </p>
-          )}
-        </div>
+        <ListTask filter={filter} />
       </div>
     </div>
   );

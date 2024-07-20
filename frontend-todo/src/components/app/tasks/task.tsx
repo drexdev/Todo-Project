@@ -1,5 +1,6 @@
 import { Pencil, Trash2 } from "lucide-react";
-import { Task as TaskData } from "../../@types/task";
+import { Task as TaskData } from "../../../@types/task";
+import { TaskEdit } from "../dialog/task-update";
 
 interface TaskProps {
   task: TaskData;
@@ -19,7 +20,7 @@ const statusStyles = {
   },
 };
 
-export default function Task({
+export function Task({
   task,
   toggleDone,
   handleDeleteTask,
@@ -29,7 +30,7 @@ export default function Task({
   return (
     <div
       key={task.id}
-      className={`w-full flex items-center justify-between gap-2 bg-white border-slate-300 py-2 px-4 rounded-sm ${
+      className={`shadow-md w-full flex items-center justify-between gap-6 bg-white border-slate-300 py-2 px-4 rounded-md flex-wrap ${
         isDone ? "opacity-60" : ""
       }`}
       title={new Date(task.id as number).toLocaleDateString()}
@@ -42,7 +43,7 @@ export default function Task({
           <input
             type="checkbox"
             checked={isDone}
-            className="appearance-none peer cursor-pointer border border-indigo-200 transition-colors w-6 h-6 rounded-lg bg-indigo-100 checked:bg-indigo-600 checked:border-0 shrink-0"
+            className="appearance-none peer cursor-pointer border border-indigo-200 transition-colors w-5 h-5 md:w-6 md:h-6 rounded-lg bg-indigo-100 checked:bg-indigo-600 checked:border-0 shrink-0"
             onChange={() => toggleDone(isDone)}
           />
           <svg
@@ -58,37 +59,39 @@ export default function Task({
         </div>
 
         <div className="text-left">
-          <h1 className="text-base font-semibold" title={task.title}>
+          <h1 className="md:text-base text-sm font-semibold break-all" title={task.title}>
             {task.title}
           </h1>
-          <p className="text-sm" title={task.description}>
+          <p className="md:text-sm text-xs break-all" title={task.description}>
             {task.description}
           </p>
         </div>
+      </div>
 
+      <div className="flex items-center gap-1 w-full sm:w-auto">
         <div
-          className={`text-xs font-medium rounded-md px-3 py-1 ${
+          className={`sm:text-xs md:text-sm text-small font-medium rounded-md flex items-center flex-1 h-8 px-3 ${
             statusStyles[task.status].style
           }`}
         >
           {statusStyles[task.status].text}
         </div>
-      </div>
 
-      <div className="flex items-center gap-1">
         {/* Caso a tarefa esteja concluída, o botão de editar tarefa não deve ser exibido. */}
         {!isDone && (
-          <button
-            title="Editar Tarefa"
-            className="p-2 w-9 h-9 rounded-lg flex items-center justify-center bg-indigo-100 cursor-pointer transition-all hover:bg-indigo-600 hover:text-white active:scale-90"
-          >
-            <Pencil strokeWidth={2} />
-          </button>
+          <TaskEdit id={task.id as number}>
+            <button
+              title="Editar Tarefa"
+              className="p-2 w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center bg-indigo-100 cursor-pointer transition-all hover:bg-indigo-600 hover:text-white active:scale-90"
+            >
+              <Pencil strokeWidth={2} />
+            </button>
+          </TaskEdit>
         )}
 
         <button
           title="Excluir Tarefa"
-          className="p-2 w-9 h-9 rounded-lg flex items-center justify-center bg-indigo-100 cursor-pointer transition-all hover:bg-red-500 hover:text-white active:scale-90"
+          className="p-2 w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center bg-indigo-100 cursor-pointer transition-all hover:bg-red-500 hover:text-white active:scale-90"
           onClick={handleDeleteTask}
         >
           <Trash2 strokeWidth={2} />

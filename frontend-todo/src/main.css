@@ -10,6 +10,10 @@
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   ::-webkit-scrollbar {
@@ -31,6 +35,6 @@
 
 @layer base {
   body {
-    @apply bg-slate-100 text-[#352d54] min-h-screen flex flex-col justify-center md:items-center px-7;
+    @apply bg-slate-100 text-[#352d54] min-h-screen flex flex-col justify-center md:items-center py-10 px-3;
   }
 }
