@@ -37,6 +37,7 @@ export class TasksService {
     }
 
     task.id = Date.now(); // Gera um ID para a nova tarefa;
+    if (!task.status) task.status = "todo";
 
     this.tasks.push(task);
 
