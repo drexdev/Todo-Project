@@ -21,6 +21,7 @@ export const TaskForm = ({ title, description, onSubmit }: TaskFormProps) => {
         <label className="text-sm font-medium">Titulo da Tarefa:</label>
         <input
           type="text"
+          minLength={3}
           maxLength={30}
           value={titleValue}
           onChange={(event) => setTitleValue(event.target.value)}
@@ -34,6 +35,7 @@ export const TaskForm = ({ title, description, onSubmit }: TaskFormProps) => {
         <label className="text-sm font-medium">Descricão da Tarefa:</label>
         <input
           type="text"
+          minLength={3}
           maxLength={50}
           value={descriptionValue}
           onChange={(event) => setDescriptionValue(event.target.value)}
