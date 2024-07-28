@@ -13,20 +13,19 @@
 ### Requisitos para inicialização do projeto:
 
 - **[NodeJS](https://nodejs.org/en)**
-- **[NPM](https://nodejs.org/en)**
 
 ## Instalação:
 
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/drexdev/ProUnion-ToDo.git
+   git clone https://github.com/drexdev/Todo-Project.git
    ```
 
-2. Navegue até a pasta **ProUnion-ToDo**:
+2. Navegue até a pasta **Todo-Project**:
 
    ```bash
-   cd ProUnion-ToDo
+   cd ./Todo-Project
    ```
 
 ### Back-End
@@ -65,9 +64,9 @@
 ## Tecnologias:
 
 ### BackEnd:
-- `Fastify`: Escolhido por sua rapidez na resposta em comparação ao Express, embora ambos ofereçam funcionalidades semelhantes.
-- `Class-Validator`: Utilizado para validação das entradas no corpo das requisições.
+- `fastify`: Escolhido devido ao seu excelente desempenho, vasta gama de plugins e segurança aprimorada.
+- `class-validator`: Utilizado para validação das entradas no corpo das requisições.
 
 ### FrontEnd:
-- `React (VITE)`: Vite é utilizado para desenvolver e compilar o estilo e layout da página.
-- `LucideReact`: Utilizado para incorporar ícones no projeto.
+- `react`: React(**Vite**) é utilizado para desenvolver e compilar o estilo e layout da página.
+- `lucide-react`: Utilizado para incorporar ícones no projeto.
